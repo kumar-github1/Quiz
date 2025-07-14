@@ -1,8 +1,5 @@
--- Quiz Application Database Schema
--- Create database
 CREATE DATABASE IF NOT EXISTS quiz_app;
 USE quiz_app;
--- Users table
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -11,7 +8,6 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
--- Questions table
 CREATE TABLE questions (
     id INT PRIMARY KEY AUTO_INCREMENT,
     question_text TEXT NOT NULL,
@@ -24,7 +20,6 @@ CREATE TABLE questions (
     difficulty ENUM('Easy', 'Medium', 'Hard') DEFAULT 'Medium',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
--- Quiz results table
 CREATE TABLE quiz_results (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
@@ -38,7 +33,6 @@ CREATE TABLE quiz_results (
     completed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
--- Indexes for better performance
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_users_username ON users(username);
 CREATE INDEX idx_quiz_results_user_id ON quiz_results(user_id);
@@ -46,7 +40,6 @@ CREATE INDEX idx_quiz_results_score ON quiz_results(score);
 CREATE INDEX idx_quiz_results_created_at ON quiz_results(created_at);
 CREATE INDEX idx_questions_category ON questions(category);
 CREATE INDEX idx_questions_difficulty ON questions(difficulty);
--- Sample questions data (you can insert your own questions here)
 INSERT INTO questions (
         question_text,
         option_a,
@@ -57,8 +50,7 @@ INSERT INTO questions (
         category,
         difficulty
     )
-VALUES -- Chapter 1–6 Questions
-    (
+VALUES (
         'What is the primary goal of AdTech for advertisers?',
         'Build websites',
         'Improve conversion rates with targeted ads',
@@ -258,7 +250,6 @@ VALUES -- Chapter 1–6 Questions
         'Chapter 1-6',
         'Medium'
     ),
-    -- Chapter 7–16 Questions
     (
         'What is behavioral targeting based on?',
         'Device type',
@@ -359,7 +350,6 @@ VALUES -- Chapter 1–6 Questions
         'Chapter 7-16',
         'Easy'
     );
--- Create a view for user statistics
 CREATE VIEW user_stats AS
 SELECT u.id,
     u.username,
@@ -378,7 +368,6 @@ FROM users u
     LEFT JOIN quiz_results qr ON u.id = qr.user_id
 GROUP BY u.id,
     u.username;
--- Create a view for leaderboard
 CREATE VIEW leaderboard AS
 SELECT u.username,
     MAX(qr.score) as best_score,

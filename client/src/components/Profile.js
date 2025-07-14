@@ -166,7 +166,7 @@ const Profile = () => {
                 </div>
             )}
 
-            {/* Performance Chart */}
+            {/* Performance Chart
             {history.length > 0 && (
                 <div className="profile-section">
                     <div className="card">
@@ -178,7 +178,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
 
             {/* Quiz History */}
             <div className="profile-section">
