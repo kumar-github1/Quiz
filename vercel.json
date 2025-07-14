@@ -16,9 +16,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/index.html"
+            "dest": "/client/build/index.html"
         }
-    ],
-    "buildCommand": "npm install && npm run build",
-    "outputDirectory": "client/build"
+    ]
 }
