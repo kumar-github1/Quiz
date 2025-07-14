@@ -140,7 +140,7 @@ const Dashboard = () => {
             </div>
 
             {/* Recent Performance Chart */}
-            {stats?.recentResults && stats.recentResults.length > 0 && (
+            {/* {stats?.recentResults && stats.recentResults.length > 0 && (
                 <div className="card">
                     <h3 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <FaChartLine /> Recent Performance
@@ -149,7 +149,7 @@ const Dashboard = () => {
                         <Line data={chartData} options={chartOptions} />
                     </div>
                 </div>
-            )}
+            )} */}
 
             {/* Recent Results */}
             {stats?.recentResults && stats.recentResults.length > 0 && (
