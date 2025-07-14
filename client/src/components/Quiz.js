@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaArrowLeft, FaArrowRight, FaCheck, FaClock } from 'react-icons/fa';
 import './Quiz.css';
+import api from '../config/api';
 
 const Quiz = () => {
     const [questions, setQuestions] = useState([]);
@@ -32,7 +33,7 @@ const Quiz = () => {
 
     const fetchQuestions = async () => {
         try {
-            const response = await axios.get('/api/quiz/questions');
+            const response = await api.get('/api/quiz/questions');
             setQuestions(response.data);
             setLoading(false);
         } catch (error) {
@@ -75,7 +76,7 @@ const Quiz = () => {
                 selectedOption
             }));
 
-            const response = await axios.post('/api/quiz/submit', { answers: answersArray });
+            const response = await api.post('/api/quiz/submit', { answers: answersArray });
             setResults(response.data);
             setShowResults(true);
         } catch (error) {

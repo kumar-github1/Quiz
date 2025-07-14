@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import axios from 'axios';
+import api from '../config/api';
 import { FaUser, FaEnvelope, FaCalendar, FaTrophy, FaHistory, FaChartLine } from 'react-icons/fa';
 import { Line } from 'react-chartjs-2';
 import {
@@ -39,9 +39,9 @@ const Profile = () => {
     const fetchProfileData = async () => {
         try {
             const [profileRes, historyRes, statsRes] = await Promise.all([
-                axios.get('/api/users/profile'),
-                axios.get('/api/users/history'),
-                axios.get('/api/users/stats')
+                api.get('/api/users/profile'),
+                api.get('/api/users/history'),
+                api.get('/api/users/stats')
             ]);
 
             setProfile(profileRes.data);

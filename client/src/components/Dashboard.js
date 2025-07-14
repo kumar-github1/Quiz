@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
+import api from '../config/api';
 import { FaPlay, FaTrophy, FaChartLine, FaHistory, FaUser } from 'react-icons/fa';
 import { Line } from 'react-chartjs-2';
 import {
@@ -37,7 +38,7 @@ const Dashboard = () => {
 
     const fetchStats = async () => {
         try {
-            const response = await axios.get('/api/quiz/stats');
+            const response = await api.get('/api/quiz/stats');
             setStats(response.data);
         } catch (error) {
             setError('Failed to load statistics');
