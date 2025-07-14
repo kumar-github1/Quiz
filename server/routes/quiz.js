@@ -6,6 +6,7 @@ const router = express.Router();
 
 // Get all questions for a quiz
 router.get('/questions', auth, async (req, res) => {
+    console.log('Get questions route hit');
     try {
         const [questions] = await pool.execute(
             'SELECT id, question_text, option_a, option_b, option_c, option_d FROM questions ORDER BY RAND() LIMIT 10'
